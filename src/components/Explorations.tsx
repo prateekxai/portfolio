@@ -72,8 +72,8 @@ export default function Explorations() {
           Where I <span className="text-accent-gradient font-display italic">go deep</span>
         </h2>
         <p className="mb-8 max-w-md text-sm text-muted md:text-base">
-          The domains I keep returning to — from agentic AI and computer vision
-          to real-time, production-grade backend systems.
+          The areas I keep coming back to: agentic AI, computer vision, and the
+          real-time backends that keep everything else running.
         </p>
         <a
           href={PROFILE.github}

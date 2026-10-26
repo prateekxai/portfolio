@@ -9,7 +9,7 @@ export default function Experience() {
         <SectionHeader
           eyebrow="Career"
           heading="Where I've *worked*"
-          subtext="Backend, AI research, and software engineering roles — shipping production systems with cross-functional teams."
+          subtext="Three roles across backend, AI research and product engineering, each one shipping real systems with real teams."
         />
 
         <div className="relative">

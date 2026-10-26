@@ -3,13 +3,40 @@
 @tailwind utilities;
 
 @layer base {
+  /* Light theme: warm paper, ink text, deeper blues for contrast. */
   :root {
+    --bg: 40 20% 97%;
+    --surface: 0 0% 100%;
+    --text: 0 0% 8%;
+    --muted: 30 4% 38%;
+    --stroke: 40 9% 87%;
+    --accent: 0 0% 8%;
+    --accent-a: #4e85bf;
+    --accent-b: #2c5d93;
+    /* RGB channels so Tailwind opacity modifiers work (bg-brand/10). */
+    --brand: 78 133 191;
+    --brand-ink: 44 93 147;
+    --texture-dots: rgba(0, 0, 0, 0.035);
+    --texture-grain: 0.035;
+    --texture-vignette: rgba(70, 55, 30, 0.1);
+    color-scheme: light;
+  }
+
+  .dark {
     --bg: 0 0% 4%;
     --surface: 0 0% 8%;
     --text: 0 0% 96%;
     --muted: 0 0% 53%;
     --stroke: 0 0% 12%;
     --accent: 0 0% 96%;
+    --accent-a: #89aacc;
+    --accent-b: #4e85bf;
+    --brand: 78 133 191;
+    --brand-ink: 137 170 204;
+    --texture-dots: rgba(255, 255, 255, 0.025);
+    --texture-grain: 0.045;
+    --texture-vignette: rgba(0, 0, 0, 0.55);
+    color-scheme: dark;
   }
 
   * {
@@ -39,12 +66,12 @@
   }
 
   .accent-gradient {
-    background: linear-gradient(90deg, #89aacc 0%, #4e85bf 100%);
+    background: linear-gradient(90deg, var(--accent-a) 0%, var(--accent-b) 100%);
   }
 
   /* Accent gradient applied to text (emphasis words) */
   .text-accent-gradient {
-    background: linear-gradient(90deg, #89aacc 0%, #4e85bf 100%);
+    background: linear-gradient(90deg, var(--accent-a) 0%, var(--accent-b) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -52,7 +79,7 @@
 
   /* Animated gradient border background (use with gradient-shift) */
   .accent-gradient-animated {
-    background: linear-gradient(90deg, #89aacc 0%, #4e85bf 50%, #89aacc 100%);
+    background: linear-gradient(90deg, var(--accent-a) 0%, var(--accent-b) 50%, var(--accent-a) 100%);
     background-size: 200% 200%;
   }
 
@@ -148,7 +175,7 @@
   height: 400%;
   pointer-events: none;
   z-index: 40;
-  opacity: 0.045;
+  opacity: var(--texture-grain);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain 8s steps(10) infinite;
   will-change: transform;
@@ -160,10 +187,7 @@
   inset: 0;
   pointer-events: none;
   z-index: 39;
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.025) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(var(--texture-dots) 1px, transparent 1px);
   background-size: 3px 3px;
   mix-blend-mode: overlay;
 }
@@ -176,7 +200,7 @@
   background: radial-gradient(
     120% 120% at 50% 40%,
     transparent 55%,
-    rgba(0, 0, 0, 0.55) 100%
+    var(--texture-vignette) 100%
   );
 }
 
@@ -203,4 +227,20 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted));
+}
+
+/* Theme switch: the new theme is revealed as a circle from the toggle. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* The hero and footer video is a dark vortex; in light mode it is inverted
+   into a pale ink swirl, keeping its blues. */
+.theme-video {
+  filter: invert(1) hue-rotate(180deg) saturate(0.85) brightness(1.04);
+}
+.dark .theme-video {
+  filter: none;
 }

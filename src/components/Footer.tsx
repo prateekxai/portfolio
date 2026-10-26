@@ -46,9 +46,9 @@ export default function Footer() {
         muted
         loop
         playsInline
-        className="absolute left-1/2 top-1/2 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 scale-y-[-1] object-cover"
+        className="theme-video absolute left-1/2 top-1/2 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 scale-y-[-1] object-cover"
       />
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-bg/70 dark:bg-black/60" />
 
       <div className="relative z-10">
         {/* Marquee */}

@@ -11,6 +11,8 @@ export default {
         muted: "hsl(var(--muted))",
         stroke: "hsl(var(--stroke))",
         accent: "hsl(var(--accent))",
+        brand: "rgb(var(--brand) / <alpha-value>)",
+        "brand-ink": "rgb(var(--brand-ink) / <alpha-value>)",
       },
       fontFamily: {
         body: ["Inter", "sans-serif"],
